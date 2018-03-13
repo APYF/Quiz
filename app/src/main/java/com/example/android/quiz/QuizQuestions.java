@@ -41,7 +41,7 @@ class TotoroQuizQuestions {
         question3.addAnswers("At the hospital", false);
 
         // Question 4
-        QuizQuestion question4 = new QuizQuestion("What did Sensei give Totoro?", AnswerType.MULTISELECTLISTANSWER);
+        QuizQuestion question4 = new QuizQuestion("What did Satsuki give Totoro?", AnswerType.MULTISELECTLISTANSWER);
         question4.addAnswers("An Acorn", false);
         question4.addAnswers("An Umbrella", true);
         question4.addAnswers("An ear of Corn", false);
