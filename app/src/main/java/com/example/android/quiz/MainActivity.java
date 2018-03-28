@@ -17,10 +17,86 @@ public class MainActivity extends AppCompatActivity {
     private int numberOfQuestions = 0;
     TotoroQuizQuestions quizQuestions;
 
+    // Declare the views to be used
+    TextView tV_question_0;
+    RadioGroup rG_question_0;
+    RadioButton rB_answer_0_0;
+    RadioButton rB_answer_0_1;
+    RadioButton rB_answer_0_2;
+    RadioButton rB_answer_0_3;
+
+    TextView tV_question_1;
+    RadioGroup rG_question_1;
+    RadioButton rB_answer_1_0;
+    RadioButton rB_answer_1_1;
+    RadioButton rB_answer_1_2;
+    RadioButton rB_answer_1_3;
+
+    TextView tV_question_2;
+    RadioGroup rG_question_2;
+    RadioButton rB_answer_2_0;
+    RadioButton rB_answer_2_1;
+    RadioButton rB_answer_2_2;
+    RadioButton rB_answer_2_3;
+
+    TextView tV_question_3;
+    RadioGroup rG_question_3;
+    RadioButton rB_answer_3_0;
+    RadioButton rB_answer_3_1;
+    RadioButton rB_answer_3_2;
+    RadioButton rB_answer_3_3;
+
+    TextView tV_question_4;
+    EditText eT_answer_4;
+
+    TextView tV_question_5;
+    CheckBox cB_answer_5_0;
+    CheckBox cB_answer_5_1;
+    CheckBox cB_answer_5_2;
+    CheckBox cB_answer_5_3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Find and Set the Views
+        tV_question_0 = (TextView) findViewById(R.id.quiz_question_0);
+        rG_question_0 = (RadioGroup) findViewById(R.id.quiz_answer_group_0);
+        rB_answer_0_0 = (RadioButton) findViewById(R.id.quiz_answer_0_0);
+        rB_answer_0_1 = (RadioButton) findViewById(R.id.quiz_answer_0_1);
+        rB_answer_0_2 = (RadioButton) findViewById(R.id.quiz_answer_0_2);
+        rB_answer_0_3 = (RadioButton) findViewById(R.id.quiz_answer_0_3);
+
+        tV_question_1 = (TextView) findViewById(R.id.quiz_question_1);
+        rG_question_1 = (RadioGroup) findViewById(R.id.quiz_answer_group_1);
+        rB_answer_1_0 = (RadioButton) findViewById(R.id.quiz_answer_1_0);
+        rB_answer_1_1 = (RadioButton) findViewById(R.id.quiz_answer_1_1);
+        rB_answer_1_2 = (RadioButton) findViewById(R.id.quiz_answer_1_2);
+        rB_answer_1_3 = (RadioButton) findViewById(R.id.quiz_answer_1_3);
+
+        tV_question_2 = (TextView) findViewById(R.id.quiz_question_2);
+        rG_question_2 = (RadioGroup) findViewById(R.id.quiz_answer_group_2);
+        rB_answer_2_0 = (RadioButton) findViewById(R.id.quiz_answer_2_0);
+        rB_answer_2_1 = (RadioButton) findViewById(R.id.quiz_answer_2_1);
+        rB_answer_2_2 = (RadioButton) findViewById(R.id.quiz_answer_2_2);
+        rB_answer_2_3 = (RadioButton) findViewById(R.id.quiz_answer_2_3);
+
+        tV_question_3 = (TextView) findViewById(R.id.quiz_question_3);
+        rG_question_3 = (RadioGroup) findViewById(R.id.quiz_answer_group_3);
+        rB_answer_3_0 = (RadioButton) findViewById(R.id.quiz_answer_3_0);
+        rB_answer_3_1 = (RadioButton) findViewById(R.id.quiz_answer_3_1);
+        rB_answer_3_2 = (RadioButton) findViewById(R.id.quiz_answer_3_2);
+        rB_answer_3_3 = (RadioButton) findViewById(R.id.quiz_answer_3_3);
+
+        tV_question_4 = (TextView) findViewById(R.id.quiz_question_4);
+        eT_answer_4 = (EditText) findViewById(R.id.quiz_answer_4);
+
+        tV_question_5 = (TextView) findViewById(R.id.quiz_question_5);
+        cB_answer_5_0 = (CheckBox) findViewById(R.id.quiz_answer_5_0);
+        cB_answer_5_1 = (CheckBox) findViewById(R.id.quiz_answer_5_1);
+        cB_answer_5_2 = (CheckBox) findViewById(R.id.quiz_answer_5_2);
+        cB_answer_5_3 = (CheckBox) findViewById(R.id.quiz_answer_5_3);
 
         quizQuestions = new TotoroQuizQuestions();
         numberOfQuestions = quizQuestions.totoroQuestions.size();
@@ -32,69 +108,39 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 
+        outState.putInt("question0state", rG_question_0.getCheckedRadioButtonId());
+        outState.putInt("question1state", rG_question_1.getCheckedRadioButtonId());
+        outState.putInt("question2state", rG_question_2.getCheckedRadioButtonId());
+        outState.putInt("question3state", rG_question_3.getCheckedRadioButtonId());
+
+        outState.putString("question4state", eT_answer_4.getText().toString());
+
+        outState.putBoolean("question5_0_state", cB_answer_5_0.isChecked());
+        outState.putBoolean("question5_1_state", cB_answer_5_1.isChecked());
+        outState.putBoolean("question5_2_state", cB_answer_5_2.isChecked());
+        outState.putBoolean("question5_3_state", cB_answer_5_3.isChecked());
+
         super.onSaveInstanceState(outState);
-        outState.putInt("saveCurrectQuizQuestion", currentQuizQuestion);
-
-
-        RadioGroup rG_question0 = (RadioGroup) findViewById(R.id.quiz_answer_group_0);
-        outState.putInt("question0state", rG_question0.getCheckedRadioButtonId());
-
-        RadioGroup rG_question1 = (RadioGroup) findViewById(R.id.quiz_answer_group_1);
-        outState.putInt("question1state", rG_question1.getCheckedRadioButtonId());
-
-        RadioGroup rG_question2 = (RadioGroup) findViewById(R.id.quiz_answer_group_2);
-        outState.putInt("question2state", rG_question2.getCheckedRadioButtonId());
-
-        RadioGroup rG_question3 = (RadioGroup) findViewById(R.id.quiz_answer_group_3);
-        outState.putInt("question3state", rG_question3.getCheckedRadioButtonId());
-
-        EditText eT_question4 = (EditText) findViewById(R.id.quiz_answer_4);
-        outState.putString("question4state", eT_question4.getText().toString());
-
-
-        CheckBox cB_question5_0 = (CheckBox) findViewById(R.id.quiz_answer_5_0);
-        outState.putBoolean("question5_0_state", cB_question5_0.isChecked());
-
-        CheckBox cB_question5_1 = (CheckBox) findViewById(R.id.quiz_answer_5_1);
-        outState.putBoolean("question5_1_state", cB_question5_1.isChecked());
-
-        CheckBox cB_question5_2 = (CheckBox) findViewById(R.id.quiz_answer_5_2);
-        outState.putBoolean("question5_2_state", cB_question5_2.isChecked());
-
-        CheckBox cB_question5_3 = (CheckBox) findViewById(R.id.quiz_answer_5_3);
-        outState.putBoolean("question5_3_state", cB_question5_3.isChecked());
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        currentQuizQuestion = savedInstanceState.getInt("saveCurrectQuizQuestion");
 
         displayQuizQuestion();
 
-        RadioGroup rG_question0 = (RadioGroup) findViewById(R.id.quiz_answer_group_0);
-        RadioGroup rG_question1 = (RadioGroup) findViewById(R.id.quiz_answer_group_1);
-        RadioGroup rG_question2 = (RadioGroup) findViewById(R.id.quiz_answer_group_2);
-        RadioGroup rG_question3 = (RadioGroup) findViewById(R.id.quiz_answer_group_3);
-        EditText eT_question4 = (EditText) findViewById(R.id.quiz_answer_4);
-        CheckBox cB_question5_0 = (CheckBox) findViewById(R.id.quiz_answer_5_0);
-        CheckBox cB_question5_1 = (CheckBox) findViewById(R.id.quiz_answer_5_1);
-        CheckBox cB_question5_2 = (CheckBox) findViewById(R.id.quiz_answer_5_2);
-        CheckBox cB_question5_3 = (CheckBox) findViewById(R.id.quiz_answer_5_3);
-
-        rG_question0.check(savedInstanceState.getInt("question0state"));
-        rG_question1.check(savedInstanceState.getInt("question1state"));
-        rG_question2.check(savedInstanceState.getInt("question2state"));
-        rG_question3.check(savedInstanceState.getInt("question3state"));
-        eT_question4.setText(savedInstanceState.getString("question4state"));
-        cB_question5_0.setChecked(savedInstanceState.getBoolean("question5_0_state"));
-        cB_question5_1.setChecked(savedInstanceState.getBoolean("question5_1_state"));
-        cB_question5_2.setChecked(savedInstanceState.getBoolean("question5_2_state"));
-        cB_question5_3.setChecked(savedInstanceState.getBoolean("question5_3_state"));
+        rG_question_0.check(savedInstanceState.getInt("question0state"));
+        rG_question_1.check(savedInstanceState.getInt("question1state"));
+        rG_question_2.check(savedInstanceState.getInt("question2state"));
+        rG_question_3.check(savedInstanceState.getInt("question3state"));
+        eT_answer_4.setText(savedInstanceState.getString("question4state"));
+        cB_answer_5_0.setChecked(savedInstanceState.getBoolean("question5_0_state"));
+        cB_answer_5_1.setChecked(savedInstanceState.getBoolean("question5_1_state"));
+        cB_answer_5_2.setChecked(savedInstanceState.getBoolean("question5_2_state"));
+        cB_answer_5_3.setChecked(savedInstanceState.getBoolean("question5_3_state"));
 
         // if the question is answered, the EditText field gets the focus on resume, so clear it
-        eT_question4.clearFocus();
-
+        eT_answer_4.clearFocus();
     }
 
     public void displayQuizQuestion() {
@@ -103,107 +149,46 @@ public class MainActivity extends AppCompatActivity {
         RadioButton radioButtonAnswer;
         CheckBox checkBoxAnswer;
 
-        QuizQuestion quizQuestion;
-
         // Question 0
-        quizQuestion = quizQuestions.totoroQuestions.get(0);
-
-        question = (TextView) findViewById(R.id.quiz_question_0);
-        question.setText(quizQuestion.getQuestion());
-
-        radioButtonAnswer = (RadioButton) findViewById(R.id.quiz_answer_0_0);
-        radioButtonAnswer.setText(quizQuestion.getAnswerInPosition(0).getAnswerText());
-
-        radioButtonAnswer = (RadioButton) findViewById(R.id.quiz_answer_0_1);
-        radioButtonAnswer.setText(quizQuestion.getAnswerInPosition(1).getAnswerText());
-
-        radioButtonAnswer = (RadioButton) findViewById(R.id.quiz_answer_0_2);
-        radioButtonAnswer.setText(quizQuestion.getAnswerInPosition(2).getAnswerText());
-
-        radioButtonAnswer = (RadioButton) findViewById(R.id.quiz_answer_0_3);
-        radioButtonAnswer.setText(quizQuestion.getAnswerInPosition(3).getAnswerText());
+        tV_question_0.setText(quizQuestions.totoroQuestions.get(0).getQuestion());
+        rB_answer_0_0.setText(quizQuestions.totoroQuestions.get(0).getAnswerInPosition(0).getAnswerText());
+        rB_answer_0_1.setText(quizQuestions.totoroQuestions.get(0).getAnswerInPosition(1).getAnswerText());
+        rB_answer_0_2.setText(quizQuestions.totoroQuestions.get(0).getAnswerInPosition(2).getAnswerText());
+        rB_answer_0_3.setText(quizQuestions.totoroQuestions.get(0).getAnswerInPosition(3).getAnswerText());
 
         // Question 1
-        quizQuestion = quizQuestions.totoroQuestions.get(1);
-
-        question = (TextView) findViewById(R.id.quiz_question_1);
-        question.setText(quizQuestion.getQuestion());
-
-        radioButtonAnswer = (RadioButton) findViewById(R.id.quiz_answer_1_0);
-        radioButtonAnswer.setText(quizQuestion.getAnswerInPosition(0).getAnswerText());
-
-        radioButtonAnswer = (RadioButton) findViewById(R.id.quiz_answer_1_1);
-        radioButtonAnswer.setText(quizQuestion.getAnswerInPosition(1).getAnswerText());
-
-        radioButtonAnswer = (RadioButton) findViewById(R.id.quiz_answer_1_2);
-        radioButtonAnswer.setText(quizQuestion.getAnswerInPosition(2).getAnswerText());
-
-        radioButtonAnswer = (RadioButton) findViewById(R.id.quiz_answer_1_3);
-        radioButtonAnswer.setText(quizQuestion.getAnswerInPosition(3).getAnswerText());
+        tV_question_1.setText(quizQuestions.totoroQuestions.get(1).getQuestion());
+        rB_answer_1_0.setText(quizQuestions.totoroQuestions.get(1).getAnswerInPosition(0).getAnswerText());
+        rB_answer_1_1.setText(quizQuestions.totoroQuestions.get(1).getAnswerInPosition(1).getAnswerText());
+        rB_answer_1_2.setText(quizQuestions.totoroQuestions.get(1).getAnswerInPosition(2).getAnswerText());
+        rB_answer_1_3.setText(quizQuestions.totoroQuestions.get(1).getAnswerInPosition(3).getAnswerText());
 
         // Question 2
-        quizQuestion = quizQuestions.totoroQuestions.get(2);
-        question = (TextView) findViewById(R.id.quiz_question_2);
-        question.setText(quizQuestion.getQuestion());
-
-        radioButtonAnswer = (RadioButton) findViewById(R.id.quiz_answer_2_0);
-        radioButtonAnswer.setText(quizQuestion.getAnswerInPosition(0).getAnswerText());
-
-        radioButtonAnswer = (RadioButton) findViewById(R.id.quiz_answer_2_1);
-        radioButtonAnswer.setText(quizQuestion.getAnswerInPosition(1).getAnswerText());
-
-        radioButtonAnswer = (RadioButton) findViewById(R.id.quiz_answer_2_2);
-        radioButtonAnswer.setText(quizQuestion.getAnswerInPosition(2).getAnswerText());
-
-        radioButtonAnswer = (RadioButton) findViewById(R.id.quiz_answer_2_3);
-        radioButtonAnswer.setText(quizQuestions.totoroQuestions.get(2).getAnswerInPosition(3).getAnswerText());
+        tV_question_2.setText(quizQuestions.totoroQuestions.get(2).getQuestion());
+        rB_answer_2_0.setText(quizQuestions.totoroQuestions.get(2).getAnswerInPosition(0).getAnswerText());
+        rB_answer_2_1.setText(quizQuestions.totoroQuestions.get(2).getAnswerInPosition(1).getAnswerText());
+        rB_answer_2_2.setText(quizQuestions.totoroQuestions.get(2).getAnswerInPosition(2).getAnswerText());
+        rB_answer_2_3.setText(quizQuestions.totoroQuestions.get(2).getAnswerInPosition(3).getAnswerText());
 
         // Question 3
-        quizQuestion = quizQuestions.totoroQuestions.get(3);
-        question = (TextView) findViewById(R.id.quiz_question_3);
-        question.setText(quizQuestion.getQuestion());
-
-        radioButtonAnswer = (RadioButton) findViewById(R.id.quiz_answer_3_0);
-        radioButtonAnswer.setText(quizQuestion.getAnswerInPosition(0).getAnswerText());
-
-        radioButtonAnswer = (RadioButton) findViewById(R.id.quiz_answer_3_1);
-        radioButtonAnswer.setText(quizQuestion.getAnswerInPosition(1).getAnswerText());
-
-        radioButtonAnswer = (RadioButton) findViewById(R.id.quiz_answer_3_2);
-        radioButtonAnswer.setText(quizQuestion.getAnswerInPosition(2).getAnswerText());
-
-        radioButtonAnswer = (RadioButton) findViewById(R.id.quiz_answer_3_3);
-        radioButtonAnswer.setText(quizQuestion.getAnswerInPosition(3).getAnswerText());
-
+        tV_question_3.setText(quizQuestions.totoroQuestions.get(3).getQuestion());
+        rB_answer_3_0.setText(quizQuestions.totoroQuestions.get(3).getAnswerInPosition(0).getAnswerText());
+        rB_answer_3_1.setText(quizQuestions.totoroQuestions.get(3).getAnswerInPosition(1).getAnswerText());
+        rB_answer_3_2.setText(quizQuestions.totoroQuestions.get(3).getAnswerInPosition(2).getAnswerText());
+        rB_answer_3_3.setText(quizQuestions.totoroQuestions.get(3).getAnswerInPosition(3).getAnswerText());
 
         // Question 4
-        quizQuestion = quizQuestions.totoroQuestions.get(4);
-        question = (TextView) findViewById(R.id.quiz_question_4);
-        question.setText(quizQuestion.getQuestion());
-
+        tV_question_4.setText(quizQuestions.totoroQuestions.get(4).getQuestion());
 
         // Question 5
-        quizQuestion = quizQuestions.totoroQuestions.get(5);
-
-        question = (TextView) findViewById(R.id.quiz_question_5);
-        question.setText(quizQuestion.getQuestion());
-
-        checkBoxAnswer = (CheckBox) findViewById(R.id.quiz_answer_5_0);
-        checkBoxAnswer.setText(quizQuestion.getAnswerInPosition(0).getAnswerText());
-
-        checkBoxAnswer = (CheckBox) findViewById(R.id.quiz_answer_5_1);
-        checkBoxAnswer.setText(quizQuestion.getAnswerInPosition(1).getAnswerText());
-
-        checkBoxAnswer = (CheckBox) findViewById(R.id.quiz_answer_5_2);
-        checkBoxAnswer.setText(quizQuestion.getAnswerInPosition(2).getAnswerText());
-
-        checkBoxAnswer = (CheckBox) findViewById(R.id.quiz_answer_5_3);
-        checkBoxAnswer.setText(quizQuestion.getAnswerInPosition(3).getAnswerText());
-
+        tV_question_5.setText(quizQuestions.totoroQuestions.get(5).getQuestion());
+        cB_answer_5_0.setText(quizQuestions.totoroQuestions.get(5).getAnswerInPosition(0).getAnswerText());
+        cB_answer_5_1.setText(quizQuestions.totoroQuestions.get(5).getAnswerInPosition(1).getAnswerText());
+        cB_answer_5_2.setText(quizQuestions.totoroQuestions.get(5).getAnswerInPosition(2).getAnswerText());
+        cB_answer_5_3.setText(quizQuestions.totoroQuestions.get(5).getAnswerInPosition(3).getAnswerText());
     }
 
     public void submitQuestionCheck(View view) {
-
 
         int currentQuizScore = 0;
 
@@ -215,113 +200,87 @@ public class MainActivity extends AppCompatActivity {
 
         // then check all the user input
 
-        RadioButton rB_question0_0 = (RadioButton) findViewById(R.id.quiz_answer_0_0);
-        if (rB_question0_0.isChecked()) {
+        if (rB_answer_0_0.isChecked()) {
             quizQuestions.totoroQuestions.get(0).setUserInputAnswer(0);
         }
 
-        RadioButton rB_question0_1 = (RadioButton) findViewById(R.id.quiz_answer_0_1);
-        if (rB_question0_1.isChecked()) {
+        if (rB_answer_0_1.isChecked()) {
             quizQuestions.totoroQuestions.get(0).setUserInputAnswer(1);
         }
 
-        RadioButton rB_question0_2 = (RadioButton) findViewById(R.id.quiz_answer_0_2);
-        if (rB_question0_2.isChecked()) {
+        if (rB_answer_0_2.isChecked()) {
             quizQuestions.totoroQuestions.get(0).setUserInputAnswer(2);
         }
 
-        RadioButton rB_question0_3 = (RadioButton) findViewById(R.id.quiz_answer_0_3);
-        if (rB_question0_3.isChecked()) {
+        if (rB_answer_0_3.isChecked()) {
             quizQuestions.totoroQuestions.get(0).setUserInputAnswer(3);
         }
 
-
-        RadioButton rB_question1_0 = (RadioButton) findViewById(R.id.quiz_answer_1_0);
-        if (rB_question1_0.isChecked()) {
+        if (rB_answer_1_0.isChecked()) {
             quizQuestions.totoroQuestions.get(1).setUserInputAnswer(0);
         }
 
-        RadioButton rB_question1_1 = (RadioButton) findViewById(R.id.quiz_answer_1_1);
-        if (rB_question1_1.isChecked()) {
+        if (rB_answer_1_1.isChecked()) {
             quizQuestions.totoroQuestions.get(1).setUserInputAnswer(1);
         }
 
-        RadioButton rB_question1_2 = (RadioButton) findViewById(R.id.quiz_answer_1_2);
-        if (rB_question1_2.isChecked()) {
+        if (rB_answer_1_2.isChecked()) {
             quizQuestions.totoroQuestions.get(1).setUserInputAnswer(2);
         }
 
-        RadioButton rB_question1_3 = (RadioButton) findViewById(R.id.quiz_answer_1_3);
-        if (rB_question1_3.isChecked()) {
+        if (rB_answer_1_3.isChecked()) {
             quizQuestions.totoroQuestions.get(1).setUserInputAnswer(3);
         }
 
-
-        RadioButton rB_question2_0 = (RadioButton) findViewById(R.id.quiz_answer_2_0);
-        if (rB_question2_0.isChecked()) {
+        if (rB_answer_2_0.isChecked()) {
             quizQuestions.totoroQuestions.get(2).setUserInputAnswer(0);
         }
 
-        RadioButton rB_question2_1 = (RadioButton) findViewById(R.id.quiz_answer_2_1);
-        if (rB_question2_1.isChecked()) {
+        if (rB_answer_2_1.isChecked()) {
             quizQuestions.totoroQuestions.get(2).setUserInputAnswer(1);
         }
 
-        RadioButton rB_question2_2 = (RadioButton) findViewById(R.id.quiz_answer_2_2);
-        if (rB_question2_2.isChecked()) {
+        if (rB_answer_2_2.isChecked()) {
             quizQuestions.totoroQuestions.get(2).setUserInputAnswer(2);
         }
 
-        RadioButton rB_question2_3 = (RadioButton) findViewById(R.id.quiz_answer_2_3);
-        if (rB_question2_3.isChecked()) {
+        if (rB_answer_2_3.isChecked()) {
             quizQuestions.totoroQuestions.get(2).setUserInputAnswer(3);
         }
 
-        RadioButton rB_question3_0 = (RadioButton) findViewById(R.id.quiz_answer_3_0);
-        if (rB_question3_0.isChecked()) {
+        if (rB_answer_3_0.isChecked()) {
             quizQuestions.totoroQuestions.get(3).setUserInputAnswer(0);
         }
 
-        RadioButton rB_question3_1 = (RadioButton) findViewById(R.id.quiz_answer_3_1);
-        if (rB_question3_1.isChecked()) {
+        if (rB_answer_3_1.isChecked()) {
             quizQuestions.totoroQuestions.get(3).setUserInputAnswer(1);
         }
 
-        RadioButton rB_question3_2 = (RadioButton) findViewById(R.id.quiz_answer_3_2);
-        if (rB_question3_2.isChecked()) {
+        if (rB_answer_3_2.isChecked()) {
             quizQuestions.totoroQuestions.get(3).setUserInputAnswer(2);
         }
 
-        RadioButton rB_question3_3 = (RadioButton) findViewById(R.id.quiz_answer_3_3);
-        if (rB_question3_3.isChecked()) {
+        if (rB_answer_3_3.isChecked()) {
             quizQuestions.totoroQuestions.get(3).setUserInputAnswer(3);
         }
 
+        quizQuestions.totoroQuestions.get(4).setUserInputAnswer(eT_answer_4.getText().toString());
 
-        EditText eT_question4 = (EditText) findViewById(R.id.quiz_answer_4);
-        quizQuestions.totoroQuestions.get(4).setUserInputAnswer(eT_question4.getText().toString());
-
-
-        CheckBox cB_question5_0 = (CheckBox) findViewById(R.id.quiz_answer_5_0);
-        if (cB_question5_0.isChecked()) {
+        if (cB_answer_5_0.isChecked()) {
             quizQuestions.totoroQuestions.get(5).setUserInputAnswer(0);
         }
 
-        CheckBox cB_question5_1 = (CheckBox) findViewById(R.id.quiz_answer_5_1);
-        if (cB_question5_1.isChecked()) {
+        if (cB_answer_5_1.isChecked()) {
             quizQuestions.totoroQuestions.get(5).setUserInputAnswer(1);
         }
 
-        CheckBox cB_question5_2 = (CheckBox) findViewById(R.id.quiz_answer_5_2);
-        if (cB_question5_2.isChecked()) {
+        if (cB_answer_5_2.isChecked()) {
             quizQuestions.totoroQuestions.get(5).setUserInputAnswer(2);
         }
 
-        CheckBox cB_question5_3 = (CheckBox) findViewById(R.id.quiz_answer_5_3);
-        if (cB_question5_3.isChecked()) {
+        if (cB_answer_5_3.isChecked()) {
             quizQuestions.totoroQuestions.get(5).setUserInputAnswer(3);
         }
-
 
         for (int i = 0; i < quizQuestions.totoroQuestions.size(); i++) {
             if (quizQuestions.totoroQuestions.get(i).userGotTheRighAnswerForQuestion())
@@ -330,10 +289,6 @@ public class MainActivity extends AppCompatActivity {
 
         String toastMessage =  getString(R.string.quiz_result_summary, currentQuizScore, numberOfQuestions);
         Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
-
-
-
     }
-
 
 }
